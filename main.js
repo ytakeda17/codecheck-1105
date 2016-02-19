@@ -29,9 +29,9 @@ app.get('/api/projects', function (req, res, next) {
 });
  
 app.post('/api/projects', function (req, res, next) {
-  var title = req.query.title;
-  var description = req.query.description;
-  var url = req.query.url;
+  var title = req.body.title;
+  var description = req.body.description;
+  var url = req.body.url;
   if(title&&description){
       knex("projects").insert({
 	  title: title,
