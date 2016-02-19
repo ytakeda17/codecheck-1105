@@ -64,7 +64,7 @@ app.get('/api/projects/:id', function (req, res, next) {
 	    res.json(project);
 	    return next();
 	}else{
-	    res.status(404).json(project);
+	    res.status(404).json("NotFound");
 	    return next();
 	}
     })
@@ -78,11 +78,11 @@ app.delete('/api/projects/:id', function (req, res, next) {
   var pid = req.params.id;
   knex("projects").where('id',pid).del()
     .then(function(project){
-	if(project==1){
-	    res.json("succeed");
+	if(project>0){
+	    res.json(pid);
 	    return next();
 	}else{
-	    res.status(404).json("failed");
+	    res.status(404).json("NotFound");
 	    return next();
 	}
     })
