@@ -57,8 +57,8 @@ app.post('/api/projects', function (req, res, next) {
 });
 
 app.get('/api/projects/:id', function (req, res, next) {
-  var pid = req.params.id;
-  knex("projects").where('id',pid).select('*')
+  var id = req.params.id;
+  knex("projects").where('id',id).select('*')
     .then(function(project){
 	if(project!=""){
 	    res.json(project);
@@ -75,11 +75,11 @@ app.get('/api/projects/:id', function (req, res, next) {
 });
 
 app.delete('/api/projects/:id', function (req, res, next) {
-  var pid = req.params.id;
-  knex("projects").where('id',pid).del()
+  var id = req.params.id;
+  knex("projects").where('id',id).del()
     .then(function(project){
 	if(project>0){
-	    res.json(pid);
+	    res.json(id);
 	    return next();
 	}else{
 	    res.status(404).json("NotFound");
